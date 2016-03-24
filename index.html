@@ -6,6 +6,7 @@
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-strap.min.js"></script>
     <script type="text/javascript" src="js/angular-strap.tpl.js"></script>
+    <script type="text/javascript" src="js/date.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" href="css/index.css" charset="utf-8">
@@ -14,14 +15,16 @@
     <div ng-app="myApp">
       <div ng-controller="MainController as main">
         <div class="container-fluid">
-          <h1>{{main.currentdate}}</h1>
+          <button class="btn btn-info" ng-click="main.preDay()"><<</button>
+          <h1 class="inline-block">{{main.currentdate}}</h1>
+          <button class="btn btn-info" ng-click="main.nextDay()">>></button>
           <table class="table table-hover">
             <tr>
               <th>時間</th>
               <th>番号</th>
               <th>名前</th>
             </tr>
-            <tr ng-repeat="reserve in main.reserves">
+            <tr ng-repeat="reserve in main.reserves | filter:{date: main.currentdate}">
               <td>{{reserve.start}}～{{reserve.end}}</td>
               <td>{{reserve.id}}</td>
               <td>{{reserve.name}}</td>
