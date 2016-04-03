@@ -1,4 +1,4 @@
-angular.module('myApp', ['mgcrea.ngStrap'])
+angular.module('myApp', ['ngSanitize'])
   .controller('MainController', function() {
     var now = new Date();
     this.currentdate = comDateFormat(now, "yyyy年MM月dd日");
