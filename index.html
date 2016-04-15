@@ -3,12 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>延長保育予約管理アプリ</title>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="js/date.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" href="css/index.css" charset="utf-8">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    <!-- <script type="text/javascript" src="js/angular-sanitize.min.js"></script> -->
+    <script type="text/javascript" src="js/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/date.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body class="bg-info">
     <div ng-app="myApp">
@@ -17,6 +19,7 @@
           <button class="btn btn-info" ng-click="main.preDay()"><<</button>
           <h1 class="inline-block">{{main.currentdate}}</h1>
           <button class="btn btn-info" ng-click="main.nextDay()">>></button>
+          <button class="btn btn-primary" ng-click="main.openModal('insert')">予約追加</button>
           <table class="table table-hover">
             <tr>
               <th>時間</th>
@@ -31,6 +34,62 @@
           </table>
         </div>
       </div>
+    <!-- 以降、モーダルの中身 -->
+    <script type="text/ng-template" id="insert.html">
+    <div class="modal-header">
+      <h1>予約追加</h1>
     </div>
+    <div class="modal-body">
+      <form>
+        <!-- <div class="form-group">
+          <label for="date">日付:</label> -->
+          <!-- <input type="text" id="date" class="form-control" ng-model="date" uib-datepicker-popup is-open="ModalCtrl.datePickerOpen">
+          <div class="input-group-addon" ng-click="ModalCtrl.toggleDatePicker($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </div> -->
+          <!-- <button type="text" id="date"
+        class="btn btn-default"
+        ng-model="dt"
+        uib-datepicker-popup
+        is-open="ModalCtrl.datePickerOpen"
+        ng-click="ModalCtrl.toggleDatePicker($event)">
+  {{ModalCtrl.date}}
+</button> -->
+        <div class="form-group">
+          <label for="date">日付:</label>
+          <input type="text" id="date" class="form-control" ng-model="ModalCtrl.date">
+        </div>
+        <div class="form-group">
+          <label for="id">id:</label>
+          <input type="text" id="id" class="form-control" ng-model="ModalCtrl.id">
+        </div>
+        <div class="form-group">
+          <label for="name">名前:</label>
+          <input type="text" id="name" class="form-control" ng-model="ModalCtrl.name">
+        </div>
+        <div class="form-group">
+          <label for="start">開始時間:</label>
+          <select id="start" class="form-control" ng-model="ModalCtrl.start">
+            <option>14:00
+            <option>15:00
+            <option>16:00
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="end">終了時間:</label>
+          <select id="end" class="form-control" ng-model="ModalCtrl.end">
+            <option>15:00
+            <option>16:00
+            <option>17:00
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-lg btn-info" ng-click="ModalCtrl.ok()">登録</button>
+      <button class="btn btn-lg btn-danger" ng-click="ModalCtrl.cancel()">戻る</button>
+    </div>
+    </script>
+  </div>
   </body>
 </html>
